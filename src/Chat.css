@@ -98,7 +98,7 @@
     display: none;
 }
 
-.chat__footer>form>.MuiSvgIcon-root {
+.chat__footer>.MuiSvgIcon-root {
     padding: 10px;
     color: gray;
 }
