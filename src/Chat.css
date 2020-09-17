@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid lightgray;
+    background-color: #ededed;
 }
 
 .chat__header-info {
@@ -79,6 +80,7 @@
     align-items: center;
     height: 62px;
     border-top: 1px solid lightgray;
+    background-color: #ededed;
 }
 
 .chat__footer>form {

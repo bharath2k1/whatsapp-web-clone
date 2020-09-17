@@ -7,21 +7,24 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import SidebarChat from "./SidebarChat";
 import db from "./firebase.js";
+import { useStateValue } from "./StateProvider";
 
 function Sidebar() {
   const [room, setroom] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
-    db.collection("rooms").onSnapshot((snapshot) => {
+    const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => {
       setroom(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
     });
+    return () => [unsubscribe()];
   }, []);
 
   return (
     <div className="sidebar">
       {/* header */}
       <div className="sidebar__header">
-        <Avatar />
+        <Avatar src={user?.photoURL} />
 
         <div className="sidebar__header-icons">
           <IconButton>
