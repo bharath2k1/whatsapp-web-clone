@@ -63,6 +63,7 @@
 .sidebar__searchcontainer>input {
     border: none;
     margin-left: 10px;
+    outline: none;
 }
 
 .sidebar__searchcontainer>.MuiSvgIcon-root {
@@ -74,6 +75,6 @@
     flex: 1;
     background-color: white;
     border-right: 1px solid lightgray;
-    overflow: scroll;
+    overflow: hidden;
 
 }

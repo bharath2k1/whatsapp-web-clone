@@ -6,6 +6,19 @@ import { Avatar } from "@material-ui/core";
 
 function SidebarChat({ id, name, addNewChat }) {
   const [seed, setseed] = useState("");
+  const [messages, setmessages] = useState("");
+
+  useEffect(() => {
+    if (id) {
+      db.collection("rooms")
+        .doc(id)
+        .collection("messages")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) =>
+          setmessages(snapshot.docs.map((doc) => doc.data()))
+        );
+    }
+  }, [id]);
 
   useEffect(() => {
     setseed(Math.floor(Math.random() * 5000));
@@ -25,7 +38,7 @@ function SidebarChat({ id, name, addNewChat }) {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="sidebarchat__info">
           <h4>{name}</h4>
-          <p>Lastname...</p>
+          <p>{messages[0]?.message}</p>
         </div>
       </div>
     </Link>
